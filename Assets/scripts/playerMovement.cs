@@ -69,7 +69,7 @@ public class playerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // when to jump
-        if(Input.GetKey(jumpKey) && readyToJump && grounded)
+        if(Input.GetKeyDown(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
 
@@ -111,6 +111,12 @@ public class playerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+        if(rb.velocity.y <= 0.5 && grounded == false)
+        {
+            new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            rb.AddForce(Vector3.down * jumpForce, ForceMode.Impulse);
+        }        
     }
     private void ResetJump()
     {
