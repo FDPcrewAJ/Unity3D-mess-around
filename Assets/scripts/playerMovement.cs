@@ -112,10 +112,10 @@ public class playerMovement : MonoBehaviour
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
 
-        if(rb.velocity.y <= 0.5 && grounded == false)
+        if(rb.velocity.y <= 20 && grounded == false)
         {
             new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-            rb.AddForce(Vector3.down * jumpForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.down * (jumpForce * 4), ForceMode.Impulse);
         }        
     }
     private void ResetJump()
